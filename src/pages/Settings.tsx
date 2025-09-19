@@ -4,9 +4,8 @@ import {
   Shield, 
   Bell, 
   Palette, 
-  Database, 
-  Download,
-  Upload,
+  
+  
   Save,
   Eye,
   EyeOff,
@@ -61,8 +60,7 @@ const Settings: React.FC = () => {
     { id: 'profile', name: 'Profile', icon: User },
     { id: 'security', name: 'Security', icon: Shield },
     { id: 'notifications', name: 'Notifications', icon: Bell },
-    { id: 'preferences', name: 'Preferences', icon: Palette },
-    { id: 'data', name: 'Data & Export', icon: Database }
+    { id: 'preferences', name: 'Preferences', icon: Palette }
   ];
 
   const handleProfileUpdate = () => {
@@ -79,15 +77,7 @@ const Settings: React.FC = () => {
     console.log('Password changed');
   };
 
-  const handleDataExport = () => {
-    // Handle data export logic
-    console.log('Data exported');
-  };
-
-  const handleDataImport = () => {
-    // Handle data import logic
-    console.log('Data imported');
-  };
+  
 
   return (
     <div className="space-y-6">
@@ -416,56 +406,7 @@ const Settings: React.FC = () => {
           </div>
         )}
 
-        {/* Data Tab */}
-        {activeTab === 'data' && (
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                <Database className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-white">Data Management</h3>
-                <p className="text-gray-300">Export and import your data</p>
-        </div>
-      </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="p-6 bg-white/5 rounded-lg border border-white/20">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Download className="w-6 h-6 text-blue-400" />
-                  <h4 className="text-white font-medium">Export Data</h4>
-                </div>
-                <p className="text-gray-300 text-sm mb-4">
-                  Download all your data in a structured format for backup or transfer purposes.
-                </p>
-          <button
-                  onClick={handleDataExport}
-                  className="btn-secondary px-4 py-2 flex items-center space-x-2"
-          >
-                  <Download className="w-4 h-4" />
-                  <span>Export Data</span>
-          </button>
-              </div>
-
-              <div className="p-6 bg-white/5 rounded-lg border border-white/20">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Upload className="w-6 h-6 text-green-400" />
-                  <h4 className="text-white font-medium">Import Data</h4>
-                </div>
-                <p className="text-gray-300 text-sm mb-4">
-                  Import data from external sources or restore from a previous backup.
-                </p>
-          <button
-                  onClick={handleDataImport}
-                  className="btn-secondary px-4 py-2 flex items-center space-x-2"
-          >
-                  <Upload className="w-4 h-4" />
-                  <span>Import Data</span>
-          </button>
-        </div>
-            </div>
-          </div>
-        )}
+        
       </div>
     </div>
   );

@@ -28,6 +28,7 @@ import {
   Cell
 } from 'recharts';
 import { mockStudents } from '../data/mockData';
+import { assessStudentRisk } from '../utils/riskEngine';
 
 const TeacherDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -67,11 +68,18 @@ const TeacherDashboard: React.FC = () => {
   const performanceData = generatePerformanceData();
 
   // Risk distribution data
-  const riskDistribution = [
-    { name: 'Low Risk', value: classStudents.filter(s => s.riskScore < 30).length, color: '#10B981' },
-    { name: 'Medium Risk', value: classStudents.filter(s => s.riskScore >= 30 && s.riskScore < 50).length, color: '#F59E0B' },
-    { name: 'High Risk', value: classStudents.filter(s => s.riskScore >= 50).length, color: '#EF4444' }
-  ];
+  const riskDistribution = (() => {
+    const buckets = { low: 0, medium: 0, high: 0 } as Record<'low'|'medium'|'high', number>;
+    classStudents.forEach(s => {
+      const a = assessStudentRisk(s);
+      buckets[a.category]++;
+    });
+    return [
+      { name: 'Low Risk', value: buckets.low, color: '#10B981' },
+      { name: 'Medium Risk', value: buckets.medium, color: '#F59E0B' },
+      { name: 'High Risk', value: buckets.high, color: '#EF4444' }
+    ];
+  })();
 
   // Top performers
   const topPerformers = classStudents
@@ -80,8 +88,8 @@ const TeacherDashboard: React.FC = () => {
 
   // Students needing attention
   const studentsNeedingAttention = classStudents
-    .filter(s => s.riskScore >= 50)
-    .sort((a, b) => b.riskScore - a.riskScore)
+    .map(s => ({ s, a: assessStudentRisk(s) }))
+    .sort((x, y) => y.a.score - x.a.score)
     .slice(0, 5);
 
   return (
@@ -256,21 +264,21 @@ const TeacherDashboard: React.FC = () => {
           </div>
           
           <div className="space-y-4">
-            {studentsNeedingAttention.map((student) => (
-              <div key={student.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+            {studentsNeedingAttention.map(({ s, a }) => (
+              <div key={s.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
                 <div className="flex items-center space-x-3">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-semibold text-sm ${
-                    student.riskScore >= 70 ? 'bg-red-500' : 'bg-orange-500'
+                    a.category === 'high' ? 'bg-red-500' : 'bg-orange-500'
                   }`}>
                     <AlertTriangle className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-white font-medium">{student.name}</div>
-                    <div className="text-gray-400 text-sm">{student.department} - Year {student.year}</div>
+                    <div className="text-white font-medium">{s.name}</div>
+                    <div className="text-gray-400 text-sm">{s.department} - Year {s.year}</div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-white font-semibold">{student.riskScore}</div>
+                  <div className="text-white font-semibold">{a.score}</div>
                   <div className="text-gray-400 text-sm">Risk Score</div>
                 </div>
               </div>

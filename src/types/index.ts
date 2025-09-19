@@ -11,6 +11,19 @@ export interface Student {
   academicScore: number;
   extraCurricularScore: number;
   familyBackground: 'low' | 'medium' | 'high';
+  // New holistic risk inputs
+  backlogs?: number; // total active backlogs/arrears
+  placementReadiness?: {
+    aptitude?: number; // 0-100
+    communication?: number; // 0-100
+    projects?: number; // 0-100
+  };
+  financialStressIndex?: number; // 0-100 (higher = more stress)
+  mentalHealthSignals?: {
+    absenteeismSpike?: boolean;
+    peerIsolation?: boolean;
+    selfReportScore?: number; // 0-100 lower worse
+  };
   riskScore: number;
   riskCategory: 'low' | 'medium' | 'high';
   lastUpdated: string;

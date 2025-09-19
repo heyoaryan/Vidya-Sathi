@@ -38,8 +38,8 @@ const Dashboard: React.FC = () => {
         navigate('/app/student-dashboard');
       } else if (user.role === 'teacher') {
         navigate('/app/teacher-dashboard');
-      } else if (user.role === 'admin') {
-        navigate('/app/admin-dashboard');
+      } else if (user.role === 'counsellor') {
+        navigate('/app/counsellor-dashboard');
       }
     }
   }, [user, navigate]);

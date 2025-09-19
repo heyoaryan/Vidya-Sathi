@@ -35,6 +35,7 @@ import {
   Pie
 } from 'recharts';
 import { mockStudents } from '../data/mockData';
+import { assessStudentRisk } from '../utils/riskEngine';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -52,11 +53,18 @@ const AdminDashboard: React.FC = () => {
   };
 
   // Risk distribution across all students
-  const riskDistribution = [
-    { name: 'Low Risk', value: mockStudents.filter(s => s.riskScore < 30).length, color: '#10B981' },
-    { name: 'Medium Risk', value: mockStudents.filter(s => s.riskScore >= 30 && s.riskScore < 50).length, color: '#F59E0B' },
-    { name: 'High Risk', value: mockStudents.filter(s => s.riskScore >= 50).length, color: '#EF4444' }
-  ];
+  const riskDistribution = (() => {
+    const buckets = { low: 0, medium: 0, high: 0 } as Record<'low'|'medium'|'high', number>;
+    mockStudents.forEach(s => {
+      const a = assessStudentRisk(s);
+      buckets[a.category]++;
+    });
+    return [
+      { name: 'Low Risk', value: buckets.low, color: '#10B981' },
+      { name: 'Medium Risk', value: buckets.medium, color: '#F59E0B' },
+      { name: 'High Risk', value: buckets.high, color: '#EF4444' }
+    ];
+  })();
 
   // Department performance
   const departmentStats = [

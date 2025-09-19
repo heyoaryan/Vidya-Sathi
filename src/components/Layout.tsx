@@ -34,7 +34,6 @@ const Layout: React.FC = () => {
       return [
         { name: 'Dashboard', href: '/app/student-dashboard', icon: Home },
         { name: 'AI Report', href: '/app/ai-report', icon: BarChart3 },
-        { name: 'AI Counselor', href: '/app/ai-counselor', icon: Brain },
         { name: 'Settings', href: '/app/settings', icon: Settings },
       ];
     } else if (user?.role === 'teacher') {
@@ -44,9 +43,9 @@ const Layout: React.FC = () => {
         { name: 'Analytics', href: '/app/analytics', icon: BarChart3 },
         { name: 'Settings', href: '/app/settings', icon: Settings },
       ];
-    } else if (user?.role === 'admin') {
+    } else if (user?.role === 'counsellor') {
       return [
-        { name: 'Dashboard', href: '/app/admin-dashboard', icon: Home },
+        { name: 'Dashboard', href: '/app/counsellor-dashboard', icon: Home },
         { name: 'Students', href: '/app/students', icon: Users },
         { name: 'Analytics', href: '/app/analytics', icon: BarChart3 },
         { name: 'Settings', href: '/app/settings', icon: Settings },
@@ -78,20 +77,20 @@ const Layout: React.FC = () => {
       navigate('/app/student-dashboard');
     } else if (user?.role === 'teacher') {
       navigate('/app/teacher-dashboard');
-    } else if (user?.role === 'admin') {
-      navigate('/app/admin-dashboard');
+    } else if (user?.role === 'counsellor') {
+      navigate('/app/counsellor-dashboard');
     } else {
       navigate('/app/dashboard');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
       {/* Animated Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }}></div>
       </div>
 
       {/* Header */}
@@ -106,12 +105,14 @@ const Layout: React.FC = () => {
               className="flex items-center space-x-3 group"
             >
               <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200">
-                  <GraduationCap className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl flex items-center justify-center transform group-hover:scale-105 transition-transform duration-200">
+                  <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-white" />
+                  </div>
                 </div>
               </div>
               <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-orange-400 group-hover:to-red-400 transition-all duration-300">
+                <h1 className="text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
                   Vidya-Sathi
                 </h1>
                 <p className="text-xs text-gray-300">AI Powered Companion</p>
@@ -128,8 +129,8 @@ const Layout: React.FC = () => {
                     to={item.href}
                     className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 group ${
                       isActive(item.href)
-                        ? 'text-white bg-white/20 backdrop-blur-sm'
-                        : 'text-gray-300 hover:text-white hover:bg-white/10'
+                        ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm'
+                        : 'text-slate-200 hover:text-white hover:bg-white/10'
                     }`}
                   >
                     <div className="flex items-center space-x-2">
@@ -137,7 +138,7 @@ const Layout: React.FC = () => {
                       <span>{item.name}</span>
                     </div>
                     {isActive(item.href) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl blur-sm"></div>
+                      <div className="absolute inset-0 bg-white/10 rounded-xl blur-sm"></div>
                     )}
                   </Link>
                 );
@@ -146,13 +147,13 @@ const Layout: React.FC = () => {
 
             {/* User Menu */}
             <div className="flex items-center space-x-4">
-              <div className="hidden sm:flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2">
-                <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+              <div className="hidden sm:flex items-center space-x-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl px-4 py-2 text-white">
+                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
                   <User className="w-5 h-5 text-white" />
                 </div>
                 <div className="text-sm">
                   <p className="text-white font-medium">{user?.name || 'Student'}</p>
-                  <p className="text-gray-300 text-xs">{user?.role || 'Student'} User</p>
+                  <p className="text-slate-200 text-xs capitalize">{user?.role || 'Student'} User</p>
                 </div>
               </div>
               
@@ -216,8 +217,8 @@ const Layout: React.FC = () => {
             </nav>
             
             <div className="p-6 border-t border-white/20">
-              <div className="flex items-center space-x-3 bg-white/10 rounded-xl px-4 py-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+              <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-xl px-4 py-3">
+                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
                   <User className="w-6 h-6 text-white" />
                 </div>
                 <div>
