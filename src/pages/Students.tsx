@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Filter, MoreVertical, Eye, Edit, Trash2, Plus, Download, Upload } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Eye, Edit, Trash2, Plus, Download, Upload } from 'lucide-react';
 import { mockStudents } from '../data/mockData';
 
 const Students: React.FC = () => {
-  const [students, setStudents] = useState(mockStudents);
+  const [students] = useState(mockStudents);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedClass, setSelectedClass] = useState('all');
   const [sortBy, setSortBy] = useState('name');

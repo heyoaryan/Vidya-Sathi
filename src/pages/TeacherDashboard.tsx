@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { 
   Users, 
-  GraduationCap, 
-  BookOpen, 
   TrendingUp, 
   AlertTriangle, 
   CheckCircle, 
   Clock,
-  Target,
   BarChart3,
-  Eye,
   MessageSquare,
   Calendar,
   Award
@@ -31,7 +27,6 @@ import { mockStudents } from '../data/mockData';
 import { assessStudentRisk } from '../utils/riskEngine';
 
 const TeacherDashboard: React.FC = () => {
-  const { user } = useAuth();
   const [selectedClass, setSelectedClass] = useState('all');
 
   // Mock teacher data - in real app, this would come from API

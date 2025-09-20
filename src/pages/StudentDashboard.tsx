@@ -15,8 +15,7 @@ import {
   ShieldCheck,
   ShieldAlert,
   ListChecks,
-  CalendarClock,
-  FileText
+  CalendarClock
 } from 'lucide-react';
 import { 
   LineChart, 
@@ -36,7 +35,6 @@ const StudentDashboard: React.FC = () => {
   // Find current student data (in real app, this would come from API)
   // For now, using first student as demo - in real app, match by user ID or email
   const currentStudent = mockStudents.find(s => s.id === user?.id) || mockStudents[0];
-  const assessment = assessStudentRisk(currentStudent);
 
   // Risk level and badge driven from the student's own riskScore (not assessment aggregate)
   const riskLevel: 'low' | 'medium' | 'high' = currentStudent.riskScore > 75 ? 'high' : currentStudent.riskScore >= 50 ? 'medium' : 'low';
