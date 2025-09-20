@@ -99,4 +99,4 @@ src/
 
 ## License
 
-This project is part of Smart India Hackathon 2025.
+This project is part of Hack Genesis 2025.
