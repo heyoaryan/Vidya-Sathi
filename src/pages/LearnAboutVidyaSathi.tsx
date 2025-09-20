@@ -324,9 +324,9 @@ const LearnAboutVidyaSathi: React.FC = () => {
             </div>
             <span className="text-lg font-bold text-white">Vidya-Sathi</span>
           </div>
-          <p className="text-gray-400 text-sm">
-            &copy; 2025 Vidya-Sathi. AI Powered Companion for Education System. Smart India Hackathon 2025.
-          </p>
+            <p className="text-gray-400 text-sm">
+              &copy; 2025 Vidya-Sathi. AI-Powered Dropout Prevention System for Schools.
+            </p>
         </div>
       </footer>
     </div>

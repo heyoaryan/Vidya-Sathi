@@ -35,13 +35,12 @@ const TeacherDashboard: React.FC = () => {
   const [selectedClass, setSelectedClass] = useState('all');
 
   // Mock teacher data - in real app, this would come from API
-  const teacherClasses = ['Computer Science', 'Mechanical', 'Electrical'];
-  const selectedDepartment = selectedClass === 'all' ? 'all' : selectedClass;
+  const teacherClasses = ['9', '10', '11', '12'];
 
-  // Filter students by department
-  const classStudents = selectedDepartment === 'all' 
+  // Filter students by class
+  const classStudents = selectedClass === 'all' 
     ? mockStudents 
-    : mockStudents.filter(s => s.department === selectedDepartment);
+    : mockStudents.filter(s => s.class === selectedClass);
 
   // Calculate class statistics
   const classStats = {
@@ -97,8 +96,8 @@ const TeacherDashboard: React.FC = () => {
       {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-          <h1 className="text-3xl font-bold text-white">Teacher Dashboard</h1>
-          <p className="text-gray-300">Manage your classes and monitor student progress</p>
+          <h1 className="text-3xl font-bold text-white">School Teacher Dashboard</h1>
+          <p className="text-gray-300">Manage your school classes and monitor student academic progress</p>
           </div>
         
         <div className="flex items-center space-x-3">
@@ -109,7 +108,7 @@ const TeacherDashboard: React.FC = () => {
           >
             <option value="all">All Classes</option>
             {teacherClasses.map(cls => (
-              <option key={cls} value={cls}>{cls}</option>
+              <option key={cls} value={cls}>Class {cls}</option>
             ))}
           </select>
         </div>
@@ -122,7 +121,7 @@ const TeacherDashboard: React.FC = () => {
             <Users className="w-8 h-8 text-white" />
             </div>
           <h3 className="text-3xl font-bold text-white mb-2">{classStats.totalStudents}</h3>
-          <p className="text-gray-300">Total Students</p>
+          <p className="text-gray-300">Total School Students</p>
             </div>
 
         <div className="glass-card p-6 text-center">
@@ -130,7 +129,7 @@ const TeacherDashboard: React.FC = () => {
             <TrendingUp className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-white mb-2">{classStats.averagePerformance}%</h3>
-          <p className="text-gray-300">Avg Performance</p>
+          <p className="text-gray-300">Avg Academic Performance</p>
         </div>
 
         <div className="glass-card p-6 text-center">
@@ -138,7 +137,7 @@ const TeacherDashboard: React.FC = () => {
             <Clock className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-white mb-2">{classStats.averageAttendance}%</h3>
-          <p className="text-gray-300">Avg Attendance</p>
+          <p className="text-gray-300">Avg School Attendance</p>
         </div>
 
         <div className="glass-card p-6 text-center">
@@ -146,7 +145,7 @@ const TeacherDashboard: React.FC = () => {
             <AlertTriangle className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-white mb-2">{classStats.highRiskStudents}</h3>
-          <p className="text-gray-300">High Risk</p>
+          <p className="text-gray-300">High Risk Students</p>
         </div>
 
         <div className="glass-card p-6 text-center">
@@ -154,7 +153,7 @@ const TeacherDashboard: React.FC = () => {
             <CheckCircle className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-white mb-2">{classStats.lowRiskStudents}</h3>
-          <p className="text-gray-300">Low Risk</p>
+          <p className="text-gray-300">Low Risk Students</p>
         </div>
       </div>
 
@@ -162,7 +161,7 @@ const TeacherDashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Performance Trend */}
         <div className="glass-card p-6">
-          <h3 className="text-xl font-semibold text-white mb-6">Class Performance Trend</h3>
+          <h3 className="text-xl font-semibold text-white mb-6">School Class Performance Trend</h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={performanceData}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -198,7 +197,7 @@ const TeacherDashboard: React.FC = () => {
 
         {/* Risk Distribution */}
         <div className="glass-card p-6">
-          <h3 className="text-xl font-semibold text-white mb-6">Risk Distribution</h3>
+          <h3 className="text-xl font-semibold text-white mb-6">Student Risk Distribution</h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={riskDistribution}>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -230,7 +229,7 @@ const TeacherDashboard: React.FC = () => {
             <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center">
               <Award className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-white">Top Performers</h3>
+            <h3 className="text-xl font-semibold text-white">Top School Performers</h3>
           </div>
           
           <div className="space-y-4">
@@ -242,7 +241,7 @@ const TeacherDashboard: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium">{student.name}</div>
-                    <div className="text-gray-400 text-sm">{student.department} - Year {student.year}</div>
+                    <div className="text-gray-400 text-sm">Class {student.class} - Section {student.section}</div>
                   </div>
                 </div>
                 <div className="text-right">
@@ -260,7 +259,7 @@ const TeacherDashboard: React.FC = () => {
             <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-red-600 rounded-xl flex items-center justify-center">
               <AlertTriangle className="w-6 h-6 text-white" />
             </div>
-            <h3 className="text-xl font-semibold text-white">Need Attention</h3>
+            <h3 className="text-xl font-semibold text-white">Students Needing Attention</h3>
           </div>
           
           <div className="space-y-4">
@@ -274,7 +273,7 @@ const TeacherDashboard: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium">{s.name}</div>
-                    <div className="text-gray-400 text-sm">{s.department} - Year {s.year}</div>
+                    <div className="text-gray-400 text-sm">Class {s.class} - Section {s.section}</div>
                   </div>
                 </div>
                 <div className="text-right">
@@ -289,14 +288,14 @@ const TeacherDashboard: React.FC = () => {
 
       {/* Quick Actions */}
       <div className="glass-card p-6">
-        <h3 className="text-xl font-semibold text-white mb-6">Quick Actions</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">School Teacher Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <button className="p-4 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-xl border border-white/20 hover:from-blue-500/30 hover:to-blue-600/30 transition-all duration-300 text-left">
             <div className="flex items-center space-x-3">
               <Users className="w-6 h-6 text-blue-400" />
               <div>
-                <h4 className="text-white font-semibold">View Students</h4>
-                <p className="text-gray-400 text-sm">Browse student list</p>
+                <h4 className="text-white font-semibold">View School Students</h4>
+                <p className="text-gray-400 text-sm">Browse school student list</p>
               </div>
             </div>
           </button>
@@ -306,7 +305,7 @@ const TeacherDashboard: React.FC = () => {
               <MessageSquare className="w-6 h-6 text-green-400" />
               <div>
                 <h4 className="text-white font-semibold">Send Messages</h4>
-                <p className="text-gray-400 text-sm">Contact students</p>
+                <p className="text-gray-400 text-sm">Contact school students</p>
               </div>
             </div>
           </button>
@@ -315,8 +314,8 @@ const TeacherDashboard: React.FC = () => {
             <div className="flex items-center space-x-3">
               <Calendar className="w-6 h-6 text-purple-400" />
               <div>
-                <h4 className="text-white font-semibold">Schedule Meeting</h4>
-                <p className="text-gray-400 text-sm">Book appointments</p>
+                <h4 className="text-white font-semibold">Schedule Parent Meeting</h4>
+                <p className="text-gray-400 text-sm">Book parent appointments</p>
               </div>
             </div>
           </button>
@@ -325,8 +324,8 @@ const TeacherDashboard: React.FC = () => {
             <div className="flex items-center space-x-3">
               <BarChart3 className="w-6 h-6 text-orange-400" />
               <div>
-                <h4 className="text-white font-semibold">View Analytics</h4>
-                <p className="text-gray-400 text-sm">Detailed reports</p>
+                <h4 className="text-white font-semibold">View School Analytics</h4>
+                <p className="text-gray-400 text-sm">Detailed school reports</p>
               </div>
             </div>
           </button>

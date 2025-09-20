@@ -5,8 +5,7 @@ import { mockStudents } from '../data/mockData';
 const Students: React.FC = () => {
   const [students, setStudents] = useState(mockStudents);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedDepartment, setSelectedDepartment] = useState('all');
-  const [selectedYear, setSelectedYear] = useState('all');
+  const [selectedClass, setSelectedClass] = useState('all');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -15,10 +14,9 @@ const Students: React.FC = () => {
     .filter(student => {
       const matchesSearch = student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            student.rollNumber.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesDepartment = selectedDepartment === 'all' || student.department === selectedDepartment;
-      const matchesYear = selectedYear === 'all' || student.year === selectedYear;
+      const matchesClass = selectedClass === 'all' || student.class === selectedClass;
       
-      return matchesSearch && matchesDepartment && matchesYear;
+      return matchesSearch && matchesClass;
     })
     .sort((a, b) => {
       let aValue: any = a[sortBy as keyof typeof a];
@@ -56,8 +54,7 @@ const Students: React.FC = () => {
     return 'text-red-600';
   };
 
-  const departments = Array.from(new Set(students.map(s => s.department)));
-  const years = Array.from(new Set(students.map(s => s.year)));
+  const classes = Array.from(new Set(students.map(s => s.class)));
     
     return (
       <div className="space-y-6">
@@ -86,7 +83,7 @@ const Students: React.FC = () => {
 
       {/* Filters and Search */}
       <div className="glass-card p-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Search */}
             <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -99,27 +96,15 @@ const Students: React.FC = () => {
               />
             </div>
 
-          {/* Department Filter */}
+          {/* Class Filter */}
             <select
-            value={selectedDepartment}
-            onChange={(e) => setSelectedDepartment(e.target.value)}
+            value={selectedClass}
+            onChange={(e) => setSelectedClass(e.target.value)}
             className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="all">All Departments</option>
-            {departments.map(dept => (
-              <option key={dept} value={dept}>{dept}</option>
-              ))}
-            </select>
-
-          {/* Year Filter */}
-            <select
-            value={selectedYear}
-            onChange={(e) => setSelectedYear(e.target.value)}
-            className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="all">All Years</option>
-            {years.map(year => (
-              <option key={year} value={year}>{year}</option>
+            <option value="all">All Classes</option>
+            {classes.map(cls => (
+              <option key={cls} value={cls}>Class {cls}</option>
               ))}
             </select>
 
@@ -179,7 +164,7 @@ const Students: React.FC = () => {
                   Student
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
-                  Department
+                  Class
                 </th>
                 <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
                   Performance
@@ -210,8 +195,8 @@ const Students: React.FC = () => {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-white">{student.department}</div>
-                    <div className="text-sm text-gray-400">Year {student.year}</div>
+                    <div className="text-sm text-white">Class {student.class}</div>
+                    <div className="text-sm text-gray-400">Section {student.section}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className={`text-sm font-medium ${getPerformanceColor(student.academicScore)}`}>

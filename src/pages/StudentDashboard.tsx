@@ -102,7 +102,7 @@ const StudentDashboard: React.FC = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-white">Welcome, {currentStudent.name}</h1>
-          <p className="text-gray-300">Here's your academic overview and AI-powered insights</p>
+          <p className="text-gray-300">Here's your school performance overview and AI-powered insights</p>
         </div>
         <div />
       </div>
@@ -120,11 +120,11 @@ const StudentDashboard: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
               <div className="flex items-center space-x-2">
                 <GraduationCap className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">{currentStudent.department}</span>
+                <span className="text-gray-300">Class {currentStudent.class} - Section {currentStudent.section}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Calendar className="w-4 h-4 text-green-400" />
-                <span className="text-gray-300">{currentStudent.year} ({currentStudent.batch})</span>
+                <span className="text-gray-300">Academic Year {currentStudent.batch}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <BookOpen className="w-4 h-4 text-purple-400" />
@@ -132,7 +132,7 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Activity className="w-4 h-4 text-orange-400" />
-                <span className="text-gray-300">Backlogs: {currentStudent.backlogs || 0}</span>
+                <span className="text-gray-300">Failed Subjects: {currentStudent.backlogs || 0}</span>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ const StudentDashboard: React.FC = () => {
             <BookOpen className="w-8 h-8 text-white" />
           </div>
           <h3 className="text-3xl font-bold text-white mb-1">{currentStudent.backlogs || 0}</h3>
-          <p className="text-gray-300">Backlogs</p>
+          <p className="text-gray-300">Failed Subjects</p>
         </div>
       </div>
           

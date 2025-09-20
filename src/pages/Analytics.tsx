@@ -68,13 +68,12 @@ const Analytics: React.FC = () => {
     { name: 'Critical Risk', value: mockStudents.filter(s => s.riskScore >= 70).length, color: '#EF4444' }
   ];
 
-  // Department performance data
-  const departmentPerformance = [
-    { department: 'Computer Science', performance: 82, students: 45, risk: 28 },
-    { department: 'Mechanical', performance: 78, students: 38, risk: 32 },
-    { department: 'Electrical', performance: 75, students: 42, risk: 35 },
-    { department: 'Civil', performance: 80, students: 35, risk: 25 },
-    { department: 'Chemical', performance: 77, students: 30, risk: 30 }
+  // Class performance data
+  const classPerformance = [
+    { class: 'Class 9', performance: 82, students: 45, risk: 28 },
+    { class: 'Class 10', performance: 78, students: 38, risk: 32 },
+    { class: 'Class 11', performance: 75, students: 42, risk: 35 },
+    { class: 'Class 12', performance: 80, students: 35, risk: 25 }
   ];
 
   const keyMetrics = [
@@ -267,13 +266,13 @@ const Analytics: React.FC = () => {
           </div>
         </div>
 
-      {/* Department Performance */}
+      {/* Class Performance */}
       <div className="glass-card p-6">
-        <h3 className="text-xl font-semibold text-white mb-6">Department Performance Overview</h3>
+        <h3 className="text-xl font-semibold text-white mb-6">Class Performance Overview</h3>
         <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={departmentPerformance}>
+          <BarChart data={classPerformance}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
-            <XAxis dataKey="department" stroke="rgba(255,255,255,0.6)" />
+            <XAxis dataKey="class" stroke="rgba(255,255,255,0.6)" />
             <YAxis stroke="rgba(255,255,255,0.6)" />
             <Tooltip 
               contentStyle={{ 

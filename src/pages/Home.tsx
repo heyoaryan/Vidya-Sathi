@@ -87,9 +87,9 @@ const Home: React.FC = () => {
   ];
 
   const stats = [
-    { number: '50,000+', label: 'Technical Students', icon: GraduationCap },
-    { number: '85%', label: 'Early Detection Rate', icon: TrendingUp },
-    { number: '200+', label: 'DTE Institutions', icon: Building2 },
+    { number: '500+', label: 'Schools Will Be Covered', icon: GraduationCap },
+    { number: '35%', label: 'Current Dropout Rate', icon: TrendingUp },
+    { number: '85%', label: 'Dropout Prevention by Vidya-Sathi', icon: Building2 },
     { number: '24/7', label: 'AI Monitoring', icon: Brain }
   ];
 
@@ -132,19 +132,19 @@ const Home: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <div className="mb-6">
             <span className="inline-block px-4 py-2 bg-blue-500/20 text-blue-300 rounded-full text-sm font-medium border border-blue-500/30">
-              AI Powered Companion for Education System
+              AI-Powered Dropout Prevention System
             </span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 slide-in-left">
             Vidya-Sathi{' '}
             <span className="gradient-text">AI System</span>
             <br />
-            <span className="text-3xl md:text-5xl text-slate-300">Dropout Prevention</span>
+            <span className="text-3xl md:text-5xl text-slate-300">Prevents Dropouts</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-4xl mx-auto slide-in-right leading-relaxed">
-            By the time term-end marks reveal failures, many struggling students have disengaged beyond recovery. 
-            Our AI system surfaces risk indicators—failing attendance, high attempts, reducing test scores—weeks earlier, 
-            enabling timely intervention and reducing dropout rates across Rajasthan's technical institutions.
+            Our AI-powered system identifies at-risk students in schools before they drop out. 
+            By analyzing attendance patterns, academic performance, and behavioral indicators, we enable early intervention 
+            to keep students engaged and on track for success across schools.
           </p>
           <div className="max-w-3xl mx-auto mb-12">
             <div className="professional-card p-5 md:p-6">
@@ -207,8 +207,8 @@ const Home: React.FC = () => {
               About <span className="gradient-text">Vidya-Sathi</span>
             </h2>
             <p className="text-gray-300 max-w-3xl mx-auto">
-              Vidya-Sathi is an AI-powered companion that helps institutions detect dropout risk early,
-              take timely action, and track impact across Rajasthan's technical institutions.
+              Vidya-Sathi is an AI-powered system that helps schools detect dropout risk early,
+              take timely intervention measures, and track student success across schools.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -404,9 +404,11 @@ const Home: React.FC = () => {
             <div>
               <h4 className="text-white font-semibold mb-4">Organization</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><span>Government of Rajasthan</span></li>
-                <li><span>Directorate of Technical Education</span></li>
-                <li><span>SIH 2025</span></li>
+                <li><span>Government of India</span></li>
+                <li><span>Ministry of Education</span></li>
+                <li><span>Department of School Education</span></li>
+                <li><span>Department of Higher Education</span></li>
+                <li><span>State Education Board</span></li>
               </ul>
             </div>
 
@@ -427,7 +429,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="border-t border-white/10 mt-10 pt-6 text-center text-gray-400 text-sm">
-            <p>&copy; 2025 Vidya-Sathi. AI Powered Companion for Education System. Smart India Hackathon 2025.</p>
+            <p>&copy; 2025 Vidya-Sathi. AI-Powered Dropout Prevention System for Schools.</p>
           </div>
         </div>
       </footer>
